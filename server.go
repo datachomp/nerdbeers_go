@@ -13,6 +13,8 @@ func main() {
 
     router := mux.NewRouter().StrictSlash(true)
     router.HandleFunc("/", Index)
+
+    log.Println("Listening on localhost:8080...")
     log.Fatal(http.ListenAndServe(":8080", router))
 }
 
