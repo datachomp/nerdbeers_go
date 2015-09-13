@@ -6,8 +6,17 @@ import (
     "log"
     "net/http"
 
+    "time"
+
     "github.com/gorilla/mux"
 )
+
+type Suggestion struct {
+    Suggestion      string
+    CreatedAt       time.Time
+}
+
+type Suggestions []Suggestion
 
 func main() {
 
