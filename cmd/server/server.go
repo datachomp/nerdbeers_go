@@ -18,6 +18,7 @@ type Suggestion struct {
 type Suggestions []Suggestion
 
 func main() {
+	port := os.Getenv("PORT")
 
 	router := mux.NewRouter().StrictSlash(true)
 	router.HandleFunc("/", Index)
@@ -25,7 +26,7 @@ func main() {
 	router.HandleFunc("/suggestions/{suggestionId}", SuggestionsShow)
 
 	log.Println("Listening on localhost:8080...")
-	log.Fatal(http.ListenAndServe(":80", router))
+	log.Fatal(http.ListenAndServe(port, router))
 }
 
 func Index(w http.ResponseWriter, r *http.Request) {
