@@ -6,7 +6,7 @@ import (
 	"log"
 	"net/http"
 	"time"
-
+	"os"
 	"nerdbeers_go/Godeps/_workspace/src/github.com/gorilla/mux"
 )
 
