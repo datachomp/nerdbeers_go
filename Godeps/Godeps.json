@@ -1,6 +1,9 @@
 {
 	"ImportPath": "nerdbeers_go",
 	"GoVersion": "go1.5.1",
+	"Packages": [
+		"./..."
+	],
 	"Deps": [
 		{
 			"ImportPath": "github.com/gorilla/context",
