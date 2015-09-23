@@ -19,14 +19,15 @@ type Suggestions []Suggestion
 
 func main() {
 	port := os.Getenv("PORT")
+	connector := fmt.Sprint(":", port)
 
 	router := mux.NewRouter().StrictSlash(true)
 	router.HandleFunc("/", Index)
 	router.HandleFunc("/suggestions", SuggestionsIndex)
 	router.HandleFunc("/suggestions/{suggestionId}", SuggestionsShow)
 	log.Println(port)
-	log.Println("Listening on localhost:8080...")
-	log.Fatal(http.ListenAndServe(":%v", port, router))
+	log.Println("Listening on localhost:%v...", port)
+	log.Fatal(http.ListenAndServe(connector, router))
 }
 
 func Index(w http.ResponseWriter, r *http.Request) {
