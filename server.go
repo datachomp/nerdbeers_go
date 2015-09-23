@@ -1,44 +1,43 @@
 package main
 
 import (
-    "fmt"
-    "html"
-    "log"
-    "net/http"
+	"fmt"
+	"html"
+	"log"
+	"net/http"
+	"time"
 
-    "time"
-
-    "github.com/gorilla/mux"
+	"nerdbeers_go/Godeps/_workspace/src/github.com/gorilla/mux"
 )
 
 type Suggestion struct {
-    Suggestion      string
-    CreatedAt       time.Time
+	Suggestion string
+	CreatedAt  time.Time
 }
 
 type Suggestions []Suggestion
 
 func main() {
 
-    router := mux.NewRouter().StrictSlash(true)
-    router.HandleFunc("/", Index)
-    router.HandleFunc("/suggestions", SuggestionsIndex)
-    router.HandleFunc("/suggestions/{suggestionId}", SuggestionsShow)
+	router := mux.NewRouter().StrictSlash(true)
+	router.HandleFunc("/", Index)
+	router.HandleFunc("/suggestions", SuggestionsIndex)
+	router.HandleFunc("/suggestions/{suggestionId}", SuggestionsShow)
 
-    log.Println("Listening on localhost:8080...")
-    log.Fatal(http.ListenAndServe(":8080", router))
+	log.Println("Listening on localhost:8080...")
+	log.Fatal(http.ListenAndServe(":8080", router))
 }
 
 func Index(w http.ResponseWriter, r *http.Request) {
-    fmt.Fprintf(w, "Hello NerdBeer, %q", html.EscapeString(r.URL.Path))
-  }
+	fmt.Fprintf(w, "Hello NerdBeer, %q", html.EscapeString(r.URL.Path))
+}
 
 func SuggestionsIndex(w http.ResponseWriter, r *http.Request) {
-    fmt.Fprintln(w, "Suggestion Index!")
+	fmt.Fprintln(w, "Suggestion Index!")
 }
 
 func SuggestionsShow(w http.ResponseWriter, r *http.Request) {
-    vars := mux.Vars(r)
-    suggestionId := vars["suggestionId"]
-    fmt.Fprintln(w, "Suggestion show:", suggestionId)
+	vars := mux.Vars(r)
+	suggestionId := vars["suggestionId"]
+	fmt.Fprintln(w, "Suggestion show:", suggestionId)
 }
