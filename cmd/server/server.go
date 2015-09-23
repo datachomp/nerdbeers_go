@@ -25,7 +25,7 @@ func main() {
 	router.HandleFunc("/suggestions/{suggestionId}", SuggestionsShow)
 
 	log.Println("Listening on localhost:8080...")
-	log.Fatal(http.ListenAndServe(":8080", router))
+	log.Fatal(http.ListenAndServe(":80", router))
 }
 
 func Index(w http.ResponseWriter, r *http.Request) {
